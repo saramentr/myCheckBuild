@@ -13,7 +13,7 @@ jobs:
        ref: dev
        path: dev
     - id: list_dirs
-      run: echo "::set-output name=matrix::$(ls dev/myLinuxWorkers/*.py|jq -cnR '[inputs | select(length>0)]')"
+      run: ls -al&&echo "::set-output name=matrix::$(ls dev/myLinuxWorkers/*.py|jq -cnR '[inputs | select(length>0)]')"
  StartWorksWin:
     runs-on: ubuntu-latest
     outputs:

@@ -51,5 +51,5 @@ def save_repo_branch_commit(lname,pname,rname,foldrep,branch,commit):
     os.system("cd "+foldrep+"&&git commit -m \""+commit+"\"")
     os.system("cd "+foldrep+"&&git push origin "+branch)
 
-os.system('github-linguist')
+os.system('github-linguist --help')
 os._exit(0)

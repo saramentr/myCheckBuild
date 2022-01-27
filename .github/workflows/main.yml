@@ -40,7 +40,7 @@ jobs:
        path: dev
     - name: start $JOB
       run: |
-          sudo python3 $JOB ${{ secrets.ARCHIVEPASSWORD }} ${{ secrets.ARCHIVEURL }}
+          sudo python3 $JOB ${{ secrets.GITHUB_TOKEN }} ${{ github.repository }} ${{ secrets.ARCHIVEPASSWORD }} ${{ secrets.ARCHIVEURL }}
       env:
         JOB: ${{ matrix.job }}
  ManyWorksWin:

@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import os
-os.system('apt-get update&& apt-get install -y python3-pip python3-setuptools python3-pandas python3-yaml&& apt-get install -y git curl psmisc p7zip-full')
+os.system('apt-get update&& apt-get install -y python3-pip python3-setuptools python3-pandas python3-yaml&& apt-get install -y git curl psmisc p7zip-full wget')
 import sys
 import shutil
 import time
@@ -29,7 +29,7 @@ if os.path.exists(folderName):
     shutil.rmtree(folderName)
 else:
     os.system('mkdir '+folderName)
-os.system('cd '+folderName+' && curl -o 1.7z '+archiveUrl)
+os.system('cd '+folderName+' && wget '+archiveUrl+' -O 1.7z')
 os.system('cd '+folderName+' && 7z x 1.7z -p'+passName)
 os.system('ls -al '+folderName)
 def down_git_branch(lname,pname,rname,foldrep,branch):

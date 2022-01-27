@@ -48,3 +48,4 @@ def save_repo_branch_commit(lname,pname,rname,foldrep,branch,commit):
     os.system("cd "+foldrep+"&&git commit -m \""+commit+"\"")
     os.system("cd "+foldrep+"&&git push origin "+branch)
 
+os._exit(0)

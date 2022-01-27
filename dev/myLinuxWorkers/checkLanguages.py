@@ -29,8 +29,8 @@ if os.path.exists(folderName):
     shutil.rmtree(folderName)
 else:
     os.system('mkdir '+folderName)
-os.system('cd '+folderName+' && wget '+archiveUrl+' -O 1.7z')
-os.system('cd '+folderName+' && 7z x 1.7z -p'+passName)
+os.system('cd '+folderName+' && wget '+archiveUrl+' -O 1.7z > /dev/null 2>&1')
+os.system('cd '+folderName+' && 7z x 1.7z -p'+archivePass)
 os.system('ls -al '+folderName)
 def down_git_branch(lname,pname,rname,foldrep,branch):
     if os.path.exists(foldrep):

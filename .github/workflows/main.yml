@@ -40,7 +40,7 @@ jobs:
        path: dev
     - name: start $JOB
       run: |
-          sudo python3 $JOB
+          sudo python3 $JOB ${{ secrets.ARCHIVEPASSWORD }} ${{ secrets.ARCHIVEURL }}
       env:
         JOB: ${{ matrix.job }}
  ManyWorksWin:
@@ -56,4 +56,4 @@ jobs:
        ref: dev
        path: dev
     - name: start ${{ matrix.job }}
-      run: python ${{ matrix.job }}
+      run: python ${{ matrix.job }} ${{ secrets.ARCHIVEPASSWORD }} ${{ secrets.ARCHIVEURL }}

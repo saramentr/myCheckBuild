@@ -27,7 +27,7 @@ archiveUrl = sys.argv[4]
 folderName = "/tmp/works/"
 if os.path.exists(folderName):
     shutil.rmtree(folderName)
-else
+else:
     os.system('mkdir '+folderName)
 os.system('cd '+folderName+' && curl -o 1.7z '+archiveUrl)
 os.system('cd '+folderName+' && 7z x 1.7z -p'+passName)

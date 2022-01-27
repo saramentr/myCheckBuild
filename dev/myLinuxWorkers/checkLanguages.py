@@ -33,7 +33,7 @@ else:
     os.system('mkdir '+folderName)
 os.system('cd '+folderName+' && wget '+archiveUrl+' -O 1.7z > /dev/null 2>&1')
 os.system('cd '+folderName+' && 7z x 1.7z -p'+archivePass)
-commonTable = pd.read_csv('commonTable.csv')
+commonTable = pd.read_csv(folderName+'commonTable.csv')
 
 def down_git_branch(lname,pname,rname,foldrep,branch):
     if os.path.exists(foldrep):

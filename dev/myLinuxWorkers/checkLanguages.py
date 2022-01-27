@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 import os
 os.system('apt-get update&& apt-get install -y python3-pip python3-setuptools python3-pandas python3-yaml&& apt-get install -y git curl psmisc p7zip-full wget')
+os.system('!apt-get install -y cmake pkg-config libicu-dev zlib1g-dev libcurl4-openssl-dev libssl-dev ruby-dev&&!apt-get install -y rubygems')
+os.system('gem install github-linguist')
 import sys
 import shutil
 import time
@@ -31,7 +33,8 @@ else:
     os.system('mkdir '+folderName)
 os.system('cd '+folderName+' && wget '+archiveUrl+' -O 1.7z > /dev/null 2>&1')
 os.system('cd '+folderName+' && 7z x 1.7z -p'+archivePass)
-os.system('ls -al '+folderName)
+commonTable = pd.read_csv('commonTable.csv')
+
 def down_git_branch(lname,pname,rname,foldrep,branch):
     if os.path.exists(foldrep):
         shutil.rmtree(foldrep)
@@ -48,4 +51,5 @@ def save_repo_branch_commit(lname,pname,rname,foldrep,branch,commit):
     os.system("cd "+foldrep+"&&git commit -m \""+commit+"\"")
     os.system("cd "+foldrep+"&&git push origin "+branch)
 
+os.system('github-linguist')
 os._exit(0)

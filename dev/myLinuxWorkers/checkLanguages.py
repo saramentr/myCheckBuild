@@ -12,6 +12,7 @@ import yaml
 import threading
 import signal
 import hashlib
+import csv
 
 def threadExit():
     os._exit(0)
@@ -33,7 +34,7 @@ fileTmp = 'tmpW'
 fileSkeepName = "skeepData"
 fileDataName = "loguistDtatResult.csv'
 branchName = sys.argv[0].split('/')[-1].split('.py')[0]
-dictLanguageControlZero = {'objc':0, 'C':0,'CPP':0,'PY':0,'Other':0}
+dictLanguageControlZero = {'HASH':'', 'C':0, 'C++':0,'C#':0,'Python':0, 'Java':0, 'Ruby':0, 'PHP':0, 'Go':0, 'JavaScript':0, 'CodeQl':0, 'Other':0}
 if os.path.exists(folderName):
     shutil.rmtree(folderName)
 else:
@@ -73,26 +74,33 @@ def chechSize():
         timer2 = threading.Timer(600.0, chechSize)
         timer2.start()
 
-def linguistParse(urlP,foldTP,fileTP):
+def linguistParse(hashP,urlP):
+    dT = dict(dictLanguageControlZero)
+    dT['HASH'] = hashP
+    foldTP = '/tmp/forLing'
+    fileTP = '/tmp/fileJsonLings.tmp'
     if os.path.exists(foldTP):
         shutil.rmtree(foldTP)
-     os.system("git clone "+i.splitlines()[0]+' '+foldTP)
+    os.system("git clone "+urlP.splitlines()[0]+' '+foldTP)
     if not os.path.exists(foldTP):
-        return dictLanguageControlZero
-    if os.path.exists(foldTP+fileTP):
-        os.remove(foldTP+fileTP)
-    os.system('github-linguist '+foldTP+' -j >> '+foldTP+fileTP)
-    if not os.path.exists(foldTP+fileTP):
-        return dictLanguageControlZero
+        return dT
+    if os.path.exists(fileTP):
+        os.remove(fileTP)
+    os.system('github-linguist '+foldTP+' -j >> '+fileTP)
+    if not os.path.exists(fileTP):
+        return dT
 
-    dT = dictLanguageControlZero
-    f = open(foldTP+fileTP)
+    f = open(fileTP)
     data = json.load(f)
+    countOther = 0
     for i in data:
-        dT[i] = 
-        print(i)
-
+        if i in dT:
+          dT[i] = data[i]['percentage']
+        else:
+         countOther += float(data[i]['percentage'])
+    dT['Other'] = countOther
     f.close()
+    return dT
 commonTable = pd.read_csv(folderName+'commonTable.csv')
 
 down_git_branch(loginName,passName,repoName,folderGitClone,branchName)
@@ -101,22 +109,30 @@ fileSkeepData = open(folderGitClone+fileSkeepName,"a+")
 fileSkeepData.seek(0, 0)
 readSkeepData = fileSkeepData.readlines()
 
-resultData = pd.read_csv(folderGitClone+fileDataName)
-
+if not os.path.exists(folderGitClone+fileDataName):
+    with open(folderGitClone+fileDataName, 'a+') as f:
+        w = csv.DictWriter(f, dictLanguageControlZero.keys())
+        w.writeheader()
+resultDataTmp = open(folderGitClone+fileDataName,"a+")
+resultData = csv.DictWriter(f, dictLanguageControlZero.keys())
 for i in commonTable['HASH']:
     if len(commonTable.loc[commonTable['HASH'] == i]['URL']) > 1:
         for urlForWork in commonTable.loc[commonTable['HASH'] == i]['URL']:
-            dictTmp = linguistParse(urlForWork,folderTmp,fileTmp)
+            dictTmp = linguistParse(i,urlForWork)
+            resultData.writerow(dictTmp)
      elif len(commonTable.loc[commonTable['HASH'] == i]['URL']) < 1:
         continue
     elif i.splitlines()[0] in str(readSkeepData) or not i.startswith('https:') or not i.splitlines()[0].endswith('.git'):
         urlForWork = commonTable.loc[commonTable['HASH'] == i]['URL'][0] 
-        dictTmp = linguistParse(urlForWork,folderTmp,fileTmp)
-        
-    resultData = resultData.append(dictLanguageControl,ignore_index=True)
+        dictTmp = linguistParse(i,urlForWork)
+        resultData.writerow(dictTmp)
     
     fileSkeepData.write(i)
     fileSkeepData.flush()
     os.fsync(fileSkeepData.fileno())
-os.system('github-linguist --help')
+    resultDataTmp.flush()
+    os.fsync(resultDataTmp.fileno())
+fileSkeepData.close()
+resultDataTmp.close()
+
 os._exit(0)

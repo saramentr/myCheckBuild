@@ -29,8 +29,7 @@ archiveUrl = sys.argv[4]
 
 folderName = "/tmp/works/"
 folderGitClone = "/tmp/gitClone/"
-folderTmp = "/tmp/tmpW"
-fileTmp = "tmpW'
+
 fileSkeepName = "skeepData"
 fileDataName = "loguistDtatResult.csv"
 branchName = sys.argv[0].split('/')[-1].split('.py')[0]

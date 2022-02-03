@@ -29,7 +29,7 @@ archiveUrl = sys.argv[4]
 
 folderName = "/tmp/works/"
 folderGitClone = "/tmp/gitClone/"
-folderTmp = "/tmp/tmpW'
+folderTmp = "/tmp/tmpW"
 fileTmp = 'tmpW'
 fileSkeepName = "skeepData"
 fileDataName = "loguistDtatResult.csv'

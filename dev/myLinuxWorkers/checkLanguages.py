@@ -34,7 +34,7 @@ fileTmp = 'tmpW'
 fileSkeepName = "skeepData"
 fileDataName = "loguistDtatResult.csv'
 branchName = sys.argv[0].split('/')[-1].split('.py')[0]
-dictLanguageControlZero = {'HASH':'', 'C':0, 'C++':0,'C#':0,'Python':0, 'Java':0, 'Ruby':0, 'PHP':0, 'Go':0, 'JavaScript':0, 'CodeQl':0, 'Other':0}
+dictLanguageControlZero = {'HASH':'', 'Assembly':0, 'C':0, 'C++':0,'C#':0,'Python':0, 'Java':0, 'Ruby':0, 'PHP':0, 'Go':0, 'JavaScript':0, 'CodeQl':0, 'Other':0}
 if os.path.exists(folderName):
     shutil.rmtree(folderName)
 else:
@@ -95,7 +95,7 @@ def linguistParse(hashP,urlP):
     countOther = 0
     for i in data:
         if i in dT:
-          dT[i] = data[i]['percentage']
+          dT[i] = float(data[i]['percentage'])
         else:
          countOther += float(data[i]['percentage'])
     dT['Other'] = countOther

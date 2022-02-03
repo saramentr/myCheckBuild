@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import os
 os.system('apt-get update&& apt-get install -y python3-pip python3-setuptools python3-pandas python3-yaml&& apt-get install -y git curl psmisc p7zip-full wget')
-os.system('!apt-get install -y cmake pkg-config libicu-dev zlib1g-dev libcurl4-openssl-dev libssl-dev ruby-dev&&!apt-get install -y rubygems')
+os.system('apt-get install -y cmake pkg-config libicu-dev zlib1g-dev libcurl4-openssl-dev libssl-dev ruby-dev&&apt-get install -y rubygems')
 os.system('gem install github-linguist')
 import sys
 import shutil

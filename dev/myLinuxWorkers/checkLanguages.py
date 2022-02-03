@@ -119,7 +119,7 @@ for i in commonTable['HASH']:
         for urlForWork in commonTable.loc[commonTable['HASH'] == i]['URL']:
             dictTmp = linguistParse(i,urlForWork)
             resultData.writerow(dictTmp)
-     elif len(commonTable.loc[commonTable['HASH'] == i]['URL']) < 1:
+    elif len(commonTable.loc[commonTable['HASH'] == i]['URL']) < 1:
         continue
     elif i.splitlines()[0] in str(readSkeepData) or not i.startswith('https:') or not i.splitlines()[0].endswith('.git'):
         urlForWork = commonTable.loc[commonTable['HASH'] == i]['URL'][0] 

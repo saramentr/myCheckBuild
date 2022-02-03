@@ -113,7 +113,7 @@ if not os.path.exists(folderGitClone+fileDataName):
         w = csv.DictWriter(f, dictLanguageControlZero.keys())
         w.writeheader()
 resultDataTmp = open(folderGitClone+fileDataName,"a+")
-resultData = csv.DictWriter(f, dictLanguageControlZero.keys())
+resultData = csv.DictWriter(resultDataTmp, dictLanguageControlZero.keys())
 for i in commonTable['HASH']:
     if len(commonTable.loc[commonTable['HASH'] == i]['URL']) > 1:
         for urlForWork in commonTable.loc[commonTable['HASH'] == i]['URL']:

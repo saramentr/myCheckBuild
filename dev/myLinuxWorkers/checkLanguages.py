@@ -46,14 +46,15 @@ def down_git_branch(lname,pname,rname,foldrep,branch):
     if os.path.exists(foldrep):
         shutil.rmtree(foldrep)
     os.system("git clone https://"+lname+":"+pname+"@github.com/"+lname+"/"+rname+".git "+foldrep)
-    os.system("cd "+foldrep+"&&git checkout "+branch+" || git checkout -b "+branch+" clean")
+    os.system("cd "+foldrep+"&& git fetch --all")
+    os.system("cd "+foldrep+"&&git checkout "+branch+" || git checkout -b "+branch+" origin/clean")
 
 def save_repo_branch_commit(lname,pname,rname,foldrep,branch,commit):
     os.system("cd "+foldrep+"&&git remote remove origin")
     os.system("cd "+foldrep+"&&git config --global user.name \""+lname+"\"")
     os.system("cd "+foldrep+"&&git config --global user.email "+lname+"@github.com")
     os.system("cd "+foldrep+"&&git remote add -f origin https://"+lname+":"+pname+"@github.com/"+lname+"/"+rname+".git")
-    os.system("cd "+foldrep+"&&git checkout "+branch+" || git checkout -b "+branch+" clean")
+    os.system("cd "+foldrep+"&&git checkout "+branch+" || git checkout -b "+branch+" origin/clean")
     os.system("cd "+foldrep+"&&git add -A")
     os.system("cd "+foldrep+"&&git commit -m \""+commit+"\"")
     os.system("cd "+foldrep+"&&git push origin "+branch)
@@ -122,7 +123,8 @@ for i in commonTable['HASH']:
     elif len(commonTable.loc[commonTable['HASH'] == i]['URL']) < 1:
         continue
     elif i.splitlines()[0] in str(readSkeepData) or not i.startswith('https:') or not i.splitlines()[0].endswith('.git'):
-        urlForWork = commonTable.loc[commonTable['HASH'] == i]['URL'][0] 
+        print(commonTable.loc[commonTable['HASH'])
+        urlForWork = commonTable.loc[commonTable['HASH'] == i]['URL'] 
         dictTmp = linguistParse(i,urlForWork)
         resultData.writerow(dictTmp)
     

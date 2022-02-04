@@ -123,10 +123,7 @@ for i in commonTable['HASH']:
     elif len(commonTable.loc[commonTable['HASH'] == i]['URL']) < 1:
         continue
     elif not i in str(readSkeepData):
-        print(i)
-        print(len(commonTable.loc[commonTable['HASH'] == i]['URL']))
-        print(commonTable.loc[commonTable['HASH'] == i]['URL'])
-        urlForWork = commonTable.loc[commonTable['HASH'] == i]['URL'][0] 
+        urlForWork = list(commonTable.loc[commonTable['HASH'] == i]['URL'])[0] 
         dictTmp = linguistParse(i,urlForWork)
         resultData.writerow(dictTmp)
     

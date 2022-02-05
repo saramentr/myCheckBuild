@@ -91,7 +91,11 @@ def linguistParse(hashP,urlP):
         return dT
 
     f = open(fileTP)
-    data = json.load(f)
+    try:
+        data = json.load(f)
+    except:
+        f.close()
+        return dT
     countOther = 0
     for i in data:
         if i in dT:

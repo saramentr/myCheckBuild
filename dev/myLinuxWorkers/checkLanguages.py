@@ -31,8 +31,8 @@ folderName = "/tmp/works/"
 folderGitClone = "/tmp/gitClone/"
 
 fileSkeepName = "skeepData"
-fileDataName = "loguistDtatResult.csv"
 branchName = sys.argv[0].split('/')[-1].split('.py')[0]
+fileDataName = branchName+".csv"
 dictLanguageControlZero = {'HASH':'', 'Assembly':0, 'C':0, 'C++':0,'C#':0,'Python':0, 'Java':0, 'Ruby':0, 'PHP':0, 'Go':0, 'JavaScript':0, 'CodeQl':0, 'Other':0}
 if os.path.exists(folderName):
     shutil.rmtree(folderName)

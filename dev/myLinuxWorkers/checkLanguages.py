@@ -36,8 +36,8 @@ branchName = sys.argv[0].split('/')[-1].split('.py')[0]
 dictLanguageControlZero = {'HASH':'', 'Assembly':0, 'C':0, 'C++':0,'C#':0,'Python':0, 'Java':0, 'Ruby':0, 'PHP':0, 'Go':0, 'JavaScript':0, 'CodeQl':0, 'Other':0}
 if os.path.exists(folderName):
     shutil.rmtree(folderName)
-else:
-    os.system('mkdir '+folderName)
+
+os.system('mkdir '+folderName)
 os.system('cd '+folderName+' && wget '+archiveUrl+' -O 1.7z > /dev/null 2>&1')
 os.system('cd '+folderName+' && 7z x 1.7z -p'+archivePass)
 

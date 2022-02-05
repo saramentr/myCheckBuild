@@ -125,7 +125,7 @@ if not os.path.exists(folderGitClone+fileDataName):
         w.writeheader()
 
 resultDataTmp = open(folderGitClone+fileDataName,"a+")
-resultData = csv.DictWriter(resultDataTmp, dictLanguageControlZero.keys())
+resultData = csv.DictWriter(resultDataTmp, dictCheckBuildQL.keys())
 
 for i in commonTable['HASH']:
 # add update by date old

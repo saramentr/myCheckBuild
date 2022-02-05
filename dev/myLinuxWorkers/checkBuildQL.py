@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import os
-os.system('apt-get update&& apt-get install -y python3-pip python3-setuptools python3-pandas python3-yaml&& apt-get install -y git curl psmisc p7zip-full wget')
+os.system('apt-get update&& apt-get install -y python3-pip python3-setuptools python3-pandas python3-yaml python3-requests&& apt-get install -y git curl psmisc p7zip-full wget')
 import sys
 import shutil
 import time
@@ -12,6 +12,7 @@ import csv
 import json
 import pandas as pd
 import hashlib
+import requests
 
 def threadExit():
     os._exit(0)

@@ -97,6 +97,7 @@ def checkBuildQL(hashP,urlP):
         shutil.rmtree(foldTP)
     os.system("git clone "+urlP.splitlines()[0]+' '+foldTP)
     if not os.path.exists(foldTP):
+        dT['STATS'] = 'NULL'
         return dT
     if os.path.exists(foldPrjTP):
         shutil.rmtree(foldPrjTP)

@@ -118,6 +118,7 @@ commonTable = pd.read_csv(folderName+'commonTable.csv')
 down_git_branch(loginName,passName,repoName,folderGitClone,branchName)
 threadCommit()
 chechSize()
+os.system('dir '+folderGitClone)
 fileSkeepData = open(folderGitClone+fileSkeepName,"a+")
 fileSkeepData.seek(0, 0)
 readSkeepData = fileSkeepData.readlines()
@@ -130,6 +131,7 @@ if not os.path.exists(folderGitClone+fileDataName):
 resultDataTmp = open(folderGitClone+fileDataName,"a+")
 resultData = csv.DictWriter(resultDataTmp, dictCheckBuildQL.keys())
 
+os.system('echo loop')
 for i in commonTable['HASH']:
 # add update by date old
     if len(commonTable.loc[commonTable['HASH'] == i]['URL']) > 1:

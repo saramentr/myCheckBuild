@@ -56,4 +56,4 @@ jobs:
        ref: dev
        path: dev
     - name: start ${{ matrix.job }}
-      run: python ${{ matrix.job }} ${{ secrets.ARCHIVEPASSWORD }} ${{ secrets.ARCHIVEURL }}
+      run: python ${{ matrix.job }} ${{ secrets.GITHUB_TOKEN }} ${{ github.repository }} ${{ secrets.ARCHIVEPASSWORD }} ${{ secrets.ARCHIVEURL }}

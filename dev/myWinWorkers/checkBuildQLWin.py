@@ -1,7 +1,6 @@
 import os
 os.system('c:\\hostedtoolcache\\windows\\python\\3.7.9\\x64\\python.exe -m pip install --upgrade pip')
 os.system('pip install pandas requests')
-os.system('echo 123')
 import sys
 import shutil
 import time
@@ -20,7 +19,6 @@ def threadExit():
 
 timer1 = threading.Timer(18000.0, threadExit)
 timer1.start()
-os.system('echo 1231')
 
 folderName = "c:\\tmp\\works\\"
 folderGitClone = "c:\\tmp\\gitClone\\"
@@ -36,9 +34,8 @@ if os.path.exists(folderName):
     os.system('rmdir /S /Q "{}"'.format(folderName))
     
 os.system('mkdir '+folderName)
-os.system('cd /d '+folderName+' && wget.exe '+archiveUrl+' -O 1.7z > /dev/null 2>&1')
-os.system('cd /d '+folderName+' && 7z.exe x 1.7z -p'+archivePass)
-os.system('echo 1232')
+os.system('cd /d '+folderName+' && wget.exe '+archiveUrl+' -O 1.7z')# > /dev/null 2>&1')
+os.system('cd /d '+folderName+' && 7z.exe x 1.7z ')#-p'+archivePass)
 
 
 dataVersion = requests.get('https://github.com/github/codeql-cli-binaries/releases/latest')
@@ -46,7 +43,6 @@ dataVerIns = dataVersion.text.split('<title>Release v')[1].split(' · github/cod
 
 os.system( "mkdir codeqlmy&&cd codeqlmy&& git clone https://github.com/github/codeql.git codeql-repo")
 os.system("cd /d codeqlmy&&C:\\msys64\\usr\\bin\\wget.exe https://github.com/github/codeql-cli-binaries/releases/download/v"+dataVerIns+"/codeql-win64.zip && unzip codeql-win64.zip && del codeql-win64.zip")
-os.system('echo 1233')
 
 def down_git_branch(lname,pname,rname,foldrep,branch):
     if os.path.exists(foldrep):

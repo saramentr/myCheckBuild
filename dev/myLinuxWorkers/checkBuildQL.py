@@ -91,7 +91,7 @@ def checkBuildQL(hashP,urlP):
     foldTP = '/tmp/forCheckQL/'
     foldPrjTP = '/tmp/dbprj/'
     foldLogTP = "/tmp/LOGsFolder/"
-    fileTP = '/tmp/fileJsonLings.tmp'
+    fileTP = '/tmp/fileOut.tmp'
     fileExitCodeTP = '/tmp/echoExitCode'
     if os.path.exists(foldTP):
         shutil.rmtree(foldTP)

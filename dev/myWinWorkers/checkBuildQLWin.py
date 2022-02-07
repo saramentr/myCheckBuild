@@ -32,11 +32,14 @@ dictCheckBuildQL = {'HASH':'', 'STATS':'', 'DATE':dateNow}
 
 if os.path.exists(folderName):
     os.system('rmdir /S /Q "{}"'.format(folderName))
-    
-os.system('mkdir '+folderName)
-os.system('cd /d '+folderName+' && C:\\msys64\\usr\\bin\\wget.exe '+archiveUrl+' -O 1.7z')# > /dev/null 2>&1')
-os.system('cd /d '+folderName+' && C:\\msys64\\usr\\bin\\7z.exe x 1.7z ')#-p'+archivePass)
 
+os.system('echo 1230')
+os.system('mkdir '+folderName)
+os.system('echo 1231')
+os.system('cd /d '+folderName+' && C:\\msys64\\usr\\bin\\wget.exe '+archiveUrl+' -O 1.7z')# > /dev/null 2>&1')
+os.system('echo 1232')
+os.system('cd /d '+folderName+' && C:\\msys64\\usr\\bin\\7z.exe x 1.7z ')#-p'+archivePass)
+os.system('echo 1233')
 
 dataVersion = requests.get('https://github.com/github/codeql-cli-binaries/releases/latest')
 dataVerIns = dataVersion.text.split('<title>Release v')[1].split(' · github/codeql-cli-binaries')[0]

@@ -92,7 +92,7 @@ def checkBuildQLWin(hashP,urlP):
         os.system('rmdir /S /Q "{}"'.format(foldPrjTP))
     #os.system("rm -rf "+foldTP+"/_lgtm*")
     os.system("sudo echo 321 > "+fileExitCodeTP)
-    os.system("cd /d codeqlmy/codeql&&dir&&codeql.exe database create --language=cpp --source-root="+foldTP+"  -- "+foldPrjTP+" && echo %ERRORLEVEL% > "+fileExitCodeTP)
+    os.system("cd /d codeqlmy/codeql&&codeql.exe database create --language=cpp --source-root="+foldTP+"  -- "+foldPrjTP+" && echo %ERRORLEVEL% > "+fileExitCodeTP)
     echoCode = open(fileExitCodeTP, 'r').read()
     if echoCode.startswith("0"):
         dT['STATS'] = 'OK'

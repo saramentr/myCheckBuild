@@ -36,8 +36,8 @@ if os.path.exists(folderName):
     os.system('rmdir /S /Q "{}"'.format(folderName))
     
 os.system('mkdir '+folderName)
-os.system('cd /d '+folderName+' && wget '+archiveUrl+' -O 1.7z > /dev/null 2>&1')
-os.system('cd /d '+folderName+' && 7z x 1.7z -p'+archivePass)
+os.system('cd /d '+folderName+' && wget.exe '+archiveUrl+' -O 1.7z > /dev/null 2>&1')
+os.system('cd /d '+folderName+' && 7z.exe x 1.7z -p'+archivePass)
 os.system('echo 1232')
 
 

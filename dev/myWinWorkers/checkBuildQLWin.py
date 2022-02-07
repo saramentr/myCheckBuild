@@ -1,4 +1,5 @@
 import os
+os.system('pip install pandas')
 import sys
 import shutil
 import time

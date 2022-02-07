@@ -43,11 +43,8 @@ if os.path.exists(folderName):
 os.system('dir c:\\&&echo 1230')
 os.system('mkdir '+folderName)
 os.system('echo 1231&&dir C:\\ProgramData\\Chocolatey\\bin\\')
-os.system('cd /d '+folderName+' &&C:\\msys64\\usr\\bin\\wget.exe '+archiveUrl+' -O 1.7z&&C:\\ProgramData\\Chocolatey\\bin\\7z.exe')
-#os.system('dir && cd /d '+folderName+' &&dir && C:\\msys64\\usr\\bin\\wget.exe '+archiveUrl+' -O 1.7z')# > /dev/null 2>&1')
-os.system('echo 1232')
-os.system('cd /d '+folderName+' && C:\\ProgramData\\Chocolatey\\bin\\7z.exe x 1.7z ')#-p'+archivePass)
-os.system('echo 1233')
+os.system('cd /d '+folderName+' &&C:\\msys64\\usr\\bin\\wget.exe '+archiveUrl+' -O 1.7z > nul 2>&1')
+os.system('cd /d '+folderName+' && C:\\ProgramData\\Chocolatey\\bin\\7z.exe x 1.7z -p'+archivePass)
 
 dataVersion = requests.get('https://github.com/github/codeql-cli-binaries/releases/latest')
 dataVerIns = dataVersion.text.split('<title>Release v')[1].split(' · github/codeql-cli-binaries')[0]

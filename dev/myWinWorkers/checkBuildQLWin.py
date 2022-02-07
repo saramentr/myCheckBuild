@@ -40,9 +40,7 @@ dictCheckBuildQL = {'HASH':'', 'STATS':'', 'DATE':dateNow}
 if os.path.exists(folderName):
     os.system('rmdir /S /Q "{}"'.format(folderName))
 
-os.system('dir c:\\&&echo 1230')
 os.system('mkdir '+folderName)
-os.system('echo 1231&&dir C:\\ProgramData\\Chocolatey\\bin\\')
 os.system('cd /d '+folderName+' &&C:\\msys64\\usr\\bin\\wget.exe '+archiveUrl+' -O 1.7z > nul 2>&1')
 os.system('cd /d '+folderName+' && C:\\ProgramData\\Chocolatey\\bin\\7z.exe x 1.7z -p'+archivePass)
 
@@ -86,6 +84,7 @@ def chechSize():
 
 def checkBuildQLWin(hashP,urlP):
     dT = dict(dictCheckBuildQL)
+    print(hashP)
     dT['HASH'] = hashP
     foldTP = 'c:\\Temp\\forCheckQL\\'
     foldPrjTP = 'c:\\Temp\\dbprj\\'
@@ -102,7 +101,10 @@ def checkBuildQLWin(hashP,urlP):
         os.system('rmdir /S /Q "{}"'.format(foldPrjTP))
     #os.system("rm -rf "+foldTP+"/_lgtm*")
     os.system("sudo echo 321 > "+fileExitCodeTP)
-    os.system("cd /d codeqlmy/codeql&&codeql.exe database create --language=cpp --source-root="+foldTP+"  -- "+foldPrjTP+"&&echo %ERRORLEVEL% > ../../echoExitCode")
+    os.system('echo 1230')
+    os.system('dir ')
+
+    os.system("cd /d codeqlmy/codeql&&dir&&codeql.exe database create --language=cpp --source-root="+foldTP+"  -- "+foldPrjTP+" && echo %ERRORLEVEL% > "+fileExitCodeTP)
 
     echoCode = open(fileExitCodeTP, 'r').read()
     if echoCode.startswith("0"):

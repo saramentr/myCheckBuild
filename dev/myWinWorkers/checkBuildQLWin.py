@@ -34,8 +34,8 @@ if os.path.exists(folderName):
     os.system('rmdir /S /Q "{}"'.format(folderName))
     
 os.system('mkdir '+folderName)
-os.system('cd /d '+folderName+' && wget.exe '+archiveUrl+' -O 1.7z')# > /dev/null 2>&1')
-os.system('cd /d '+folderName+' && 7z.exe x 1.7z ')#-p'+archivePass)
+os.system('cd /d '+folderName+' && C:\\msys64\\usr\\bin\\wget.exe '+archiveUrl+' -O 1.7z')# > /dev/null 2>&1')
+os.system('cd /d '+folderName+' && C:\\msys64\\usr\\bin\\7z.exe x 1.7z ')#-p'+archivePass)
 
 
 dataVersion = requests.get('https://github.com/github/codeql-cli-binaries/releases/latest')

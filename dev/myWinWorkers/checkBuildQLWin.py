@@ -76,7 +76,6 @@ def threadCommit():
 
 def checkBuildQLWin(hashP,urlP):
     dT = dict(dictCheckBuildQL)
-    print(hashP)
     dT['HASH'] = hashP
     foldTP = 'c:\\Temp\\forCheckQL\\'
     foldPrjTP = 'c:\\Temp\\dbprj\\'
@@ -93,11 +92,7 @@ def checkBuildQLWin(hashP,urlP):
         os.system('rmdir /S /Q "{}"'.format(foldPrjTP))
     #os.system("rm -rf "+foldTP+"/_lgtm*")
     os.system("sudo echo 321 > "+fileExitCodeTP)
-    os.system('echo 1230')
-    os.system('dir ')
-
     os.system("cd /d codeqlmy/codeql&&dir&&codeql.exe database create --language=cpp --source-root="+foldTP+"  -- "+foldPrjTP+" && echo %ERRORLEVEL% > "+fileExitCodeTP)
-
     echoCode = open(fileExitCodeTP, 'r').read()
     if echoCode.startswith("0"):
         dT['STATS'] = 'OK'
@@ -110,7 +105,6 @@ commonTable = pd.read_csv(folderName+'commonTable.csv')
 down_git_branch(loginName,passName,repoName,folderGitClone,branchName)
 threadCommit()
 
-os.system('dir '+folderGitClone)
 fileSkeepData = open(folderGitClone+fileSkeepName,"a+")
 fileSkeepData.seek(0, 0)
 readSkeepData = fileSkeepData.readlines()
@@ -123,7 +117,6 @@ if not os.path.exists(folderGitClone+fileDataName):
 resultDataTmp = open(folderGitClone+fileDataName,"a+")
 resultData = csv.DictWriter(resultDataTmp, dictCheckBuildQL.keys())
 
-os.system('echo loop')
 for i in commonTable['HASH']:
 # add update by date old
     if len(commonTable.loc[commonTable['HASH'] == i]['URL']) > 1:

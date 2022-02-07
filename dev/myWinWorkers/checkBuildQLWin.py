@@ -139,5 +139,5 @@ for i in commonTable['HASH']:
     os.fsync(resultDataTmp.fileno())
 fileSkeepData.close()
 resultDataTmp.close()
-
+save_repo_branch_commit(loginName,passName,repoName,folderGitClone,branchName,"fin commit")
 os._exit(0)

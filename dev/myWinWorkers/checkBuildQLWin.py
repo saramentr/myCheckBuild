@@ -1,5 +1,7 @@
 import os
+os.system('c:\hostedtoolcache\windows\python\3.7.9\x64\python.exe -m pip install --upgrade pip')
 os.system('pip install pandas requests')
+os.system('echo 123')
 import sys
 import shutil
 import time
@@ -33,15 +35,15 @@ if os.path.exists(folderName):
     os.system('rmdir /S /Q "{}"'.format(folderName))
     
 os.system('mkdir '+folderName)
-os.system('cd '+folderName+' && wget '+archiveUrl+' -O 1.7z > /dev/null 2>&1')
-os.system('cd '+folderName+' && 7z x 1.7z -p'+archivePass)
+os.system('cd /d '+folderName+' && wget '+archiveUrl+' -O 1.7z > /dev/null 2>&1')
+os.system('cd /d '+folderName+' && 7z x 1.7z -p'+archivePass)
 
 
 dataVersion = requests.get('https://github.com/github/codeql-cli-binaries/releases/latest')
 dataVerIns = dataVersion.text.split('<title>Release v')[1].split(' · github/codeql-cli-binaries')[0]
 
 os.system( "mkdir codeqlmy&&cd codeqlmy&& git clone https://github.com/github/codeql.git codeql-repo")
-os.system("cd codeqlmy&&C:\\msys64\\usr\\bin\\wget.exe https://github.com/github/codeql-cli-binaries/releases/download/v"+dataVerIns+"/codeql-win64.zip && unzip codeql-win64.zip && del codeql-win64.zip")
+os.system("cd /d codeqlmy&&C:\\msys64\\usr\\bin\\wget.exe https://github.com/github/codeql-cli-binaries/releases/download/v"+dataVerIns+"/codeql-win64.zip && unzip codeql-win64.zip && del codeql-win64.zip")
 
 def down_git_branch(lname,pname,rname,foldrep,branch):
     if os.path.exists(foldrep):
@@ -93,7 +95,7 @@ def checkBuildQLWin(hashP,urlP):
         os.system('rmdir /S /Q "{}"'.format(foldPrjTP))
     #os.system("rm -rf "+foldTP+"/_lgtm*")
     os.system("sudo echo 321 > "+fileExitCodeTP)
-    os.system("cd codeqlmy/codeql&&codeql.exe database create --language=cpp --source-root="+foldTP+"  -- "+foldPrjTP+"&&echo %ERRORLEVEL% > ../../echoExitCode")
+    os.system("cd /d codeqlmy/codeql&&codeql.exe database create --language=cpp --source-root="+foldTP+"  -- "+foldPrjTP+"&&echo %ERRORLEVEL% > ../../echoExitCode")
 
     echoCode = open(fileExitCodeTP, 'r').read()
     if echoCode.startswith("0"):

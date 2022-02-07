@@ -72,15 +72,7 @@ def threadCommit():
     timer = threading.Timer(1800.0, threadCommit)
     timer.start()
 
-def chechSize():
-    st = os.statvfs('/')
-    ba = (st.f_bavail * st.f_frsize)
-    if ba < 3*3221225472:
-        save_repo_branch_commit(loginName,passName,repoName,folderGitClone,branchName,"chechSize small free space")
-        os._exit(0)
-    else:
-        timer2 = threading.Timer(600.0, chechSize)
-        timer2.start()
+
 
 def checkBuildQLWin(hashP,urlP):
     dT = dict(dictCheckBuildQL)
@@ -117,7 +109,7 @@ commonTable = pd.read_csv(folderName+'commonTable.csv')
 
 down_git_branch(loginName,passName,repoName,folderGitClone,branchName)
 threadCommit()
-chechSize()
+
 os.system('dir '+folderGitClone)
 fileSkeepData = open(folderGitClone+fileSkeepName,"a+")
 fileSkeepData.seek(0, 0)

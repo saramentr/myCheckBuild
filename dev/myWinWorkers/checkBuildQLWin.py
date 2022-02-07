@@ -20,8 +20,8 @@ def threadExit():
 timer1 = threading.Timer(18000.0, threadExit)
 timer1.start()
 
-folderName = "c:\\tmp\\works\\"
-folderGitClone = "c:\\tmp\\gitClone\\"
+folderName = "c:\\Temp\\works\\"
+folderGitClone = "c:\\Temp\\gitClone\\"
 
 fileSkeepName = "skeepData"
 branchName = sys.argv[0].split('/')[-1].split('.py')[0]
@@ -33,7 +33,7 @@ dictCheckBuildQL = {'HASH':'', 'STATS':'', 'DATE':dateNow}
 if os.path.exists(folderName):
     os.system('rmdir /S /Q "{}"'.format(folderName))
 
-os.system('dir&&echo 1230')
+os.system('dir c:\\&&echo 1230')
 os.system('mkdir '+folderName)
 os.system('echo 1231')
 os.system('dir&&cd /d '+folderName+' &&dir&& C:\\msys64\\usr\\bin\\wget.exe '+archiveUrl+' -O 1.7z')# > /dev/null 2>&1')
@@ -82,11 +82,11 @@ def chechSize():
 def checkBuildQLWin(hashP,urlP):
     dT = dict(dictCheckBuildQL)
     dT['HASH'] = hashP
-    foldTP = 'c:\\tmp\\forCheckQL\\'
-    foldPrjTP = 'c:\\tmp\\dbprj\\'
-    foldLogTP = "c:\\tmp\\LOGsFolder\\"
-    fileTP = 'c:\\tmp\\fileOut.tmp'
-    fileExitCodeTP = 'c:\\tmp\\echoExitCode'
+    foldTP = 'c:\\Temp\\forCheckQL\\'
+    foldPrjTP = 'c:\\Temp\\dbprj\\'
+    foldLogTP = "c:\\Temp\\LOGsFolder\\"
+    fileTP = 'c:\\Temp\\fileOut.tmp'
+    fileExitCodeTP = 'c:\\Temp\\echoExitCode'
     if os.path.exists(foldTP):
         os.system('rmdir /S /Q "{}"'.format(foldTP))
     os.system("git clone "+urlP.splitlines()[0]+' '+foldTP)

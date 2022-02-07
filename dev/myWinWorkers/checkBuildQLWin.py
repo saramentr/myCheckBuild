@@ -35,8 +35,8 @@ if os.path.exists(folderName):
 
 os.system('dir c:\\&&echo 1230')
 os.system('mkdir '+folderName)
-os.system('echo 1231')
-os.system('dir&&cd /d '+folderName+' &&dir&& C:\\msys64\\usr\\bin\\wget.exe '+archiveUrl+' -O 1.7z')# > /dev/null 2>&1')
+os.system('echo 1231&&dir c:\\Temp\\')
+os.system('dir && cd /d '+folderName+' &&dir && C:\\msys64\\usr\\bin\\wget.exe '+archiveUrl+' -O 1.7z')# > /dev/null 2>&1')
 os.system('echo 1232')
 os.system('cd /d '+folderName+' && C:\\msys64\\usr\\bin\\7z.exe x 1.7z ')#-p'+archivePass)
 os.system('echo 1233')

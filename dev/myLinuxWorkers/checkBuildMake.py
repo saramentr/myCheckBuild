@@ -176,8 +176,8 @@ def checkBuildMake(hashP,urlP):
             dT['STATS'] = 'ERR'
             dT['METHOD'] = j
             dT['ADDONS'] = strAddons
-    if dT['STATS'] == ''
-        dT['STATS'] == 'SKEEP'
+    if dT['STATS'] == '':
+        dT['STATS'] == 'NULL'
         dT['METHOD'] = 'SKEEP'
         dT['ADDONS'] = 'NULL'
     return dT

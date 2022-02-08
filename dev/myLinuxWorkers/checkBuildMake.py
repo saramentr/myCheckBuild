@@ -101,6 +101,8 @@ def checkInstall(command,strAddonP,gitFolderP,tmpLogsP,tmpLogsHistP):
                 if l in listRepeat:
                     continue
                 if l.startswith('No package') and l.rstrip().endswith('found'):
+                    print(l)
+                    print(l.split('\\''))
                     strAddonP +=' '+ l.split('\\'')[1]
                     os.system('sudo apt-get install -y '+l.split('\\'')[1])
                     os.system('sudo apt-get install -y '+l.split('\\'')[1]+'-dev')

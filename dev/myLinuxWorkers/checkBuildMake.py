@@ -88,7 +88,7 @@ def checkInstall(command,strAddonP,gitFolderP,tmpLogsP,tmpLogsHistP):
             if outBuildCode != 0:
                 break
     else:
-        outBuildCode = os.system('cd '+gitFolderP+' && '+j+' 2> '+tmpLogsP)
+        outBuildCode = os.system('cd '+gitFolderP+' && '+command+' 2> '+tmpLogsP)
     flagRepeat = False
     listRepeat = []
     if os.path.exists(tmpLogsHistP):

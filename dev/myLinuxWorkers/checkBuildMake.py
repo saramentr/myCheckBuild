@@ -141,10 +141,10 @@ def checkBuildMake(hashP,urlP):
     gitFolder= '/tmp/workGit/'
     tmpLogs = '/tmp/AllLogs'
     tmpLogsHist = '/tmp/AllLogsHist'
-    if os.path.exists(foldTP):
-        shutil.rmtree(foldTP)
+    if os.path.exists(gitFolder):
+        shutil.rmtree(gitFolder)
     os.system("git clone --recursive "+urlP.splitlines()[0]+' '+gitFolder)
-    if not os.path.exists(foldTP):
+    if not os.path.exists(gitFolder):
         dT['STATS'] = 'NULL'
         dT['METHOD'] = 'NULL'
         dT['ADDONS'] = 'NULL'

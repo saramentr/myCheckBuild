@@ -37,8 +37,8 @@ branchName = sys.argv[0].split('/')[-1].split('.py')[0]
 fileDataName = branchName+".csv"
 
 dateNow = datetime.datetime.today().strftime('%d%m%Y')
-dictCheckMake = {'HASH':'', 'METHOD':'' ,'ADDONS':'' ,'STATS':'', 'DATE':dateNow}
-listMakeCommand = ['./autogen.sh&&./configure', 'cmake ./', './synclibs.sh&&./autogen.sh&&./configure', 'autoreconf -i -f&&./configure', 'cmake -S llvm -B build -G \\\\\"Unix Makefiles\\\\\"', 'autoreconf -vif&&./configure', './bootstrap.sh&&./configure', './configure', './bootstrap&&./configure', './Configure', 'autoreconf -i&&./configure', './configure-cmake', './buildconf&&./configure', '/usr/local/bin/meson build', \"./auto/configure --prefix=/usr/share/nginx --sbin-path=/usr/sbin/nginx --with-cc-opt='-g -O2 -fPIE -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2' --with-ld-opt='-Wl,-Bsymbolic-functions -fPIE -pie -Wl,-z,relro -Wl,-z,now'\", 'make configure&&configure', 'make clean', 'autoreconf -vfi&&./configure', 'build/autogen.sh&&./configure', 'cmake ./ -DFORCE_INSOURCE_BUILD=1 -DDOWNLOAD_BOOST=1 -DWITH_BOOST=/tmp/', 'autoreconf&&./configure', './boot.sh&&./configure', 'autoreconf -vi&&./configure --with-modules=\"\" --disable-lua-records', 'autoreconf -fi&&./configure', 'cmake -G\"Unix Makefiles\"']
+dictCheckMake = {'HASH':'', 'METHOD':'' ,'ADDONS':'' ,'STATS':'' ,'DATE':dateNow}
+listMakeCommand = ['./configure','./autogen.sh && ./configure','build/autogen.sh &&./configure','./bootstrap.sh&&./configure','autoreconf -i && ./configure','cmake ./','./bootstrap&&./configure']
 
 if os.path.exists(folderName):
     shutil.rmtree(folderName)

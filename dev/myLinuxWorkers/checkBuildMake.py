@@ -193,11 +193,11 @@ readSkeepData = fileSkeepData.readlines()
 
 if not os.path.exists(folderGitClone+fileDataName):
     with open(folderGitClone+fileDataName, 'a+') as f:
-        w = csv.DictWriter(f, dictCheckBuildQL.keys())
+        w = csv.DictWriter(f, dictCheckMake.keys())
         w.writeheader()
 
 resultDataTmp = open(folderGitClone+fileDataName,"a+")
-resultData = csv.DictWriter(resultDataTmp, dictCheckBuildQL.keys())
+resultData = csv.DictWriter(resultDataTmp, dictCheckMake.keys())
 
 for i in commonTable['HASH']:
 # add update by date old

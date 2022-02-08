@@ -101,12 +101,10 @@ def checkInstall(command,strAddonP,gitFolderP,tmpLogsP,tmpLogsHistP):
                 if l in listRepeat:
                     continue
                 if l.startswith('No package') and l.rstrip().endswith('found'):
-                    print(l)
-                    print(l.split('\\''))
-                    strAddonP +=' '+ l.split('\\'')[1]
-                    os.system('sudo apt-get install -y '+l.split('\\'')[1])
-                    os.system('sudo apt-get install -y '+l.split('\\'')[1]+'-dev')
-                    os.system('sudo apt-get install -y lib'+l.split('\\'')[1]+'-dev')
+                    strAddonP +=' '+ l.split('\'')[1]
+                    os.system('sudo apt-get install -y '+l.split('\'')[1])
+                    os.system('sudo apt-get install -y '+l.split('\'')[1]+'-dev')
+                    os.system('sudo apt-get install -y lib'+l.split('\'')[1]+'-dev')
                     flagRepeat = True
                 elif l.rstrip().endswith('header not installed'):
                     strAddonP += ' '+ l.split('header not installed')[0].split()[-1]
@@ -126,11 +124,11 @@ def checkInstall(command,strAddonP,gitFolderP,tmpLogsP,tmpLogsHistP):
                     os.system('sudo apt-get install -y '+l.split('configure: error: ')[1].split(' package not found')[0]+'-dev')
                     os.system('sudo apt-get install -y lib'+l.split('configure: error: ')[1].split(' package not found')[0]+'-dev')
                     flagRepeat = True
-                elif 'Could not find prerequisite package \\'' in l:
-                    strAddonP += ' '+ l.split('\\'')[1].lower()  
-                    os.system('sudo apt-get install -y '+l.split('\\'')[1].lower())
-                    os.system('sudo apt-get install -y '+l.split('\\'')[1].lower()+'-dev')
-                    os.system('sudo apt-get install -y lib'+l.split('\\'')[1].lower()+'-dev')
+                elif 'Could not find prerequisite package \'' in l:
+                    strAddonP += ' '+ l.split('\'')[1].lower()  
+                    os.system('sudo apt-get install -y '+l.split('\'')[1].lower())
+                    os.system('sudo apt-get install -y '+l.split('\'')[1].lower()+'-dev')
+                    os.system('sudo apt-get install -y lib'+l.split('\'')[1].lower()+'-dev')
                     flagRepeat = True
 
     if flagRepeat:

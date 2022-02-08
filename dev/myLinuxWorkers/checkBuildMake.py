@@ -136,7 +136,7 @@ def checkInstall(command,strAddonP,gitFolderP,tmpLogsP,tmpLogsHistP):
     return outBuildCode,strAddonP
 
 def checkBuildMake(hashP,urlP):
-    dT = dict(dictCheckBuildQL)
+    dT = dict(dictCheckMake)
     dT['HASH'] = hashP
     gitFolder= '/tmp/workGit/'
     tmpLogs = '/tmp/AllLogs'

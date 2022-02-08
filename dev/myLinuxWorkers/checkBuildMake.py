@@ -167,7 +167,7 @@ def checkBuildMake(hashP,urlP):
         elif j.startswith('make'):
             if not os.path.exists(gitFolder+'/Makefile'):
                 continue
-        outCode,strAddons = checkInstall(j,strAddos,gitFolder,tmpLogs,tmpLogsHist)
+        outCode,strAddons = checkInstall(j,strAddons,gitFolder,tmpLogs,tmpLogsHist)
         if outCode == 0:
             dT['STATS'] = 'OK'
             dT['METHOD'] = j

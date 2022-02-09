@@ -2,6 +2,8 @@ name:  start workers
 on:
   issues:
     types: labeled
+  schedule:
+    - cron: 0 */8 * * *
 jobs:
  StartWorks:
     runs-on: ubuntu-latest

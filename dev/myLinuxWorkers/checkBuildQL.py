@@ -103,9 +103,11 @@ def checkBuildQL(hashP,urlP):
         return dT
     if os.path.exists(foldPrjTP):
         shutil.rmtree(foldPrjTP)
-    os.system("rm -rf "+foldTP+"/_lgtm*")
+    os.system("rm -rf "+foldTP+"_lgtm*")
     os.system("sudo echo 321 > "+fileExitCodeTP)
+    print('test1 checkbuild')
     os.system("timeout 40m /opt/codeqlmy/codeql/codeql database create --language=cpp --source-root="+foldTP+" --logdir="+foldLogTP+" -- "+foldPrjTP+" &&sudo echo $? > "+fileExitCodeTP)
+    print('test2checkbuild')
     echoCode = open(fileExitCodeTP, 'r').read()
     if echoCode.startswith("0"):
         dT['STATS'] = 'OK'
@@ -140,9 +142,10 @@ for i in commonTable['HASH']:
         continue
     elif not i in str(readSkeepData):
         urlForWork = list(commonTable.loc[commonTable['HASH'] == i]['URL'])[0] 
+        print('testwork')
         dictTmp = checkBuildQL(i,urlForWork)
         resultData.writerow(dictTmp)
-    
+    print(len(commonTable.loc[commonTable['HASH'] == i]['URL']))
     fileSkeepData.write(i+'\n')
     fileSkeepData.flush()
     os.fsync(fileSkeepData.fileno())

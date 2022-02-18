@@ -117,7 +117,7 @@ commonTable = pd.read_csv(folderName+'commonTable.csv')
 
 down_git_branch(loginName,passName,repoName,folderGitClone,branchName)
 threadCommit()
-chechSize()
+#chechSize()
 fileSkeepData = open(folderGitClone+fileSkeepName,"a+")
 fileSkeepData.seek(0, 0)
 readSkeepData = fileSkeepData.readlines()

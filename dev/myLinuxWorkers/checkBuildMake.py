@@ -146,6 +146,7 @@ def checkBuildMake(hashP,urlP):
     if not str(urlP).startswith('https://') and not str(urlP).startswith('git://'):
         return dT
     os.system("git clone --recursive "+urlP.splitlines()[0]+' '+gitFolder)
+    os.system('echo clone end')
     if not os.path.exists(gitFolder):
         dT['STATS'] = 'NULL'
         dT['METHOD'] = 'NULL'

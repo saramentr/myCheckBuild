@@ -106,7 +106,9 @@ def checkBuildQL(hashP,urlP):
     os.system("rm -rf "+foldTP+"_lgtm*")
     os.system("sudo echo 321 > "+fileExitCodeTP)
     print('test1 checkbuild')
-    os.system("timeout 40m /opt/codeqlmy/codeql/codeql database create --language=cpp --source-root="+foldTP+" --logdir="+foldLogTP+" -- "+foldPrjTP+" &&sudo echo $? > "+fileExitCodeTP)
+#    os.system("timeout 40m /opt/codeqlmy/codeql/codeql database create --language=cpp --source-root="+foldTP+" --logdir="+foldLogTP+" -- "+foldPrjTP+" &&sudo echo $? > "+fileExitCodeTP)
+    os.system("echo  /opt/codeqlmy/codeql/codeql database create --language=cpp --source-root="+foldTP+" --logdir="+foldLogTP+" -- "+foldPrjTP+" &&sudo echo $? > "+fileExitCodeTP)
+
     print('test2checkbuild')
     echoCode = open(fileExitCodeTP, 'r').read()
     if echoCode.startswith("0"):

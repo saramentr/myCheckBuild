@@ -145,6 +145,7 @@ for i in commonTable['HASH']:
     elif not i in str(readSkeepData):
         urlForWork = list(commonTable.loc[commonTable['HASH'] == i]['URL'])[0] 
         print('testwork')
+        os.system('echo tess')
         dictTmp = checkBuildQL(i,urlForWork)
         resultData.writerow(dictTmp)
     print(len(commonTable.loc[commonTable['HASH'] == i]['URL']))

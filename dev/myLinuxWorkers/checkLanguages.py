@@ -129,12 +129,14 @@ for i in commonTable['HASH']:
     elif len(commonTable.loc[commonTable['HASH'] == i]['URL']) < 1:
         continue
     elif not i in str(readSkeepData):
-        urlForWork = list(commonTable.loc[commonTable['HASH'] == i]['URL'])[0] 
-        dictTmp = linguistParse(i,urlForWork)
-        resultData.writerow(dictTmp)
         fileSkeepData.write(i+'\n')
         fileSkeepData.flush()
         os.fsync(fileSkeepData.fileno())
+
+        urlForWork = list(commonTable.loc[commonTable['HASH'] == i]['URL'])[0] 
+        dictTmp = linguistParse(i,urlForWork)
+        resultData.writerow(dictTmp)
+
     resultDataTmp.flush()
     os.fsync(resultDataTmp.fileno())
 fileSkeepData.close()

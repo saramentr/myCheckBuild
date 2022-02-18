@@ -143,7 +143,7 @@ for i in commonTable['HASH']:
         dictTmp = checkBuildQL(i,urlForWork)
         resultData.writerow(dictTmp)
     
-    fileSkeepData.write(i)
+    fileSkeepData.write(i+'\n')
     fileSkeepData.flush()
     os.fsync(fileSkeepData.fileno())
     resultDataTmp.flush()

@@ -213,10 +213,9 @@ for i in commonTable['HASH']:
         urlForWork = list(commonTable.loc[commonTable['HASH'] == i]['URL'])[0] 
         dictTmp = checkBuildMake(i,urlForWork)
         resultData.writerow(dictTmp)
-    
-    fileSkeepData.write(i+'\n')
-    fileSkeepData.flush()
-    os.fsync(fileSkeepData.fileno())
+        fileSkeepData.write(i+'\n')
+        fileSkeepData.flush()
+        os.fsync(fileSkeepData.fileno())
     resultDataTmp.flush()
     os.fsync(resultDataTmp.fileno())
 fileSkeepData.close()

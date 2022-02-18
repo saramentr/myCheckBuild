@@ -143,6 +143,8 @@ def checkBuildMake(hashP,urlP):
     tmpLogsHist = '/tmp/AllLogsHist'
     if os.path.exists(gitFolder):
         shutil.rmtree(gitFolder)
+    if not str(urlP).statswith('https://') and not str(urlP).statswith('git://'):
+        return dT
     os.system("git clone --recursive "+urlP.splitlines()[0]+' '+gitFolder)
     if not os.path.exists(gitFolder):
         dT['STATS'] = 'NULL'
@@ -212,7 +214,7 @@ for i in commonTable['HASH']:
         dictTmp = checkBuildMake(i,urlForWork)
         resultData.writerow(dictTmp)
     
-    fileSkeepData.write(i)
+    fileSkeepData.write(i+'\n')
     fileSkeepData.flush()
     os.fsync(fileSkeepData.fileno())
     resultDataTmp.flush()

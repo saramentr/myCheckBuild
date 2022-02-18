@@ -143,7 +143,7 @@ def checkBuildMake(hashP,urlP):
     tmpLogsHist = '/tmp/AllLogsHist'
     if os.path.exists(gitFolder):
         shutil.rmtree(gitFolder)
-    if not str(urlP).statswith('https://') and not str(urlP).statswith('git://'):
+    if not str(urlP).startswith('https://') and not str(urlP).startswith('git://'):
         return dT
     os.system("git clone --recursive "+urlP.splitlines()[0]+' '+gitFolder)
     if not os.path.exists(gitFolder):

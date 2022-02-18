@@ -133,7 +133,7 @@ for i in commonTable['HASH']:
         dictTmp = linguistParse(i,urlForWork)
         resultData.writerow(dictTmp)
     
-    fileSkeepData.write(i)
+    fileSkeepData.write(i+'\n')
     fileSkeepData.flush()
     os.fsync(fileSkeepData.fileno())
     resultDataTmp.flush()

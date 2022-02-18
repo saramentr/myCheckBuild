@@ -84,6 +84,9 @@ def checkBuildQLWin(hashP,urlP):
     fileExitCodeTP = 'c:\\Temp\\echoExitCode'
     if os.path.exists(foldTP):
         os.system('rmdir /S /Q "{}"'.format(foldTP))
+    if not str(urlP).statswith('https://') and not str(urlP).statswith('git://'):
+        dT['STATS'] = 'NULL'
+        return dT        
     os.system("git clone "+urlP.splitlines()[0]+' '+foldTP)
     if not os.path.exists(foldTP):
         dT['STATS'] = 'NULL'

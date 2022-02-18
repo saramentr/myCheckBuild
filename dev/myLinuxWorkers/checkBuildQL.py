@@ -95,7 +95,7 @@ def checkBuildQL(hashP,urlP):
     fileExitCodeTP = '/tmp/echoExitCode'
     if os.path.exists(foldTP):
         shutil.rmtree(foldTP)
-    if not str(urlP).statswith('https://') and not str(urlP).statswith('git://'):
+    if not str(urlP).startswith('https://') and not str(urlP).startswith('git://'):
         return dT
     os.system("git clone "+urlP.splitlines()[0]+' '+foldTP)
     if not os.path.exists(foldTP):

@@ -98,6 +98,7 @@ def checkBuildQL(hashP,urlP):
     if not str(urlP).startswith('https://') and not str(urlP).startswith('git://'):
         return dT
     os.system("git clone "+urlP.splitlines()[0]+' '+foldTP)
+    os.system('echo clone end')
     if not os.path.exists(foldTP):
         dT['STATS'] = 'NULL'
         return dT
@@ -105,9 +106,9 @@ def checkBuildQL(hashP,urlP):
         shutil.rmtree(foldPrjTP)
     os.system("rm -rf "+foldTP+"_lgtm*")
     os.system("sudo echo 321 > "+fileExitCodeTP)
-    print('test1 checkbuild')
+    
 #    os.system("timeout 40m /opt/codeqlmy/codeql/codeql database create --language=cpp --source-root="+foldTP+" --logdir="+foldLogTP+" -- "+foldPrjTP+" &&sudo echo $? > "+fileExitCodeTP)
-    os.system("echo  /opt/codeqlmy/codeql/codeql database create --language=cpp --source-root="+foldTP+" --logdir="+foldLogTP+" -- "+foldPrjTP+" &&sudo echo $? > "+fileExitCodeTP)
+    os.system("/opt/codeqlmy/codeql/codeql database create --language=cpp --source-root="+foldTP+" --logdir="+foldLogTP+" -- "+foldPrjTP+" &&sudo echo $? > "+fileExitCodeTP)
 
     print('test2checkbuild')
     echoCode = open(fileExitCodeTP, 'r').read()
@@ -144,11 +145,10 @@ for i in commonTable['HASH']:
         continue
     elif not i in str(readSkeepData):
         urlForWork = list(commonTable.loc[commonTable['HASH'] == i]['URL'])[0] 
-        print('testwork')
         os.system('echo tess')
         dictTmp = checkBuildQL(i,urlForWork)
         resultData.writerow(dictTmp)
-    print(len(commonTable.loc[commonTable['HASH'] == i]['URL']))
+    echo('skeep')
     fileSkeepData.write(i+'\n')
     fileSkeepData.flush()
     os.fsync(fileSkeepData.fileno())

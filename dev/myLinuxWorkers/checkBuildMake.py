@@ -132,7 +132,7 @@ def checkInstall(command,strAddonP,gitFolderP,tmpLogsP,tmpLogsHistP):
                     flagRepeat = True
 
     if flagRepeat:
-        outBuildCode,strAddonP = checkInstall(command,strAddonP)
+        outBuildCode,strAddonP = checkInstall(command,strAddonP,gitFolderP,tmpLogsP,tmpLogsHistP)
     return outBuildCode,strAddonP
 
 def checkBuildMake(hashP,urlP):

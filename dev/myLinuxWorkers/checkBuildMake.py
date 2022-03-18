@@ -213,7 +213,7 @@ for i in commonTable['HASH']:
     if len(commonTable.loc[commonTable['HASH'] == i]['URL']) > 1:
         for urlForWork in commonTable.loc[commonTable['HASH'] == i]['URL']:
             listdictTmp = checkBuildMake(i,urlForWork)
-			for dictTmp in listdictTmp:
+            for dictTmp in listdictTmp:
                 resultData.writerow(dictTmp)
     elif len(commonTable.loc[commonTable['HASH'] == i]['URL']) < 1:
         continue
@@ -224,7 +224,7 @@ for i in commonTable['HASH']:
 
         urlForWork = list(commonTable.loc[commonTable['HASH'] == i]['URL'])[0] 
         listdictTmp = checkBuildMake(i,urlForWork)
-		for dictTmp in listdictTmp:
+        for dictTmp in listdictTmp:
             resultData.writerow(dictTmp)
 
     resultDataTmp.flush()

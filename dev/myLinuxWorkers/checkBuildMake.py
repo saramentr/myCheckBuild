@@ -136,6 +136,7 @@ def checkInstall(command,strAddonP,gitFolderP,tmpLogsP,tmpLogsHistP):
     return outBuildCode,strAddonP
 
 def checkBuildMake(hashP,urlP):
+    listdT = []
     dT = dict(dictCheckMake)
     dT['HASH'] = hashP
     gitFolder= '/tmp/workGit/'
@@ -144,14 +145,16 @@ def checkBuildMake(hashP,urlP):
     if os.path.exists(gitFolder):
         shutil.rmtree(gitFolder)
     if not str(urlP).startswith('https://') and not str(urlP).startswith('git://'):
-        return dT
+        listdT.append(dT.copy())
+        return listdT
     os.system("git clone --recursive "+urlP.splitlines()[0]+' '+gitFolder)
     os.system('echo clone end')
     if not os.path.exists(gitFolder):
         dT['STATS'] = 'NULL'
         dT['METHOD'] = 'NULL'
         dT['ADDONS'] = 'NULL'
-        return dT
+        listdT.append(dT.copy())
+        return listdT
     outCode = 7788
     strAddons = ''
     for j in listMakeCommand:
@@ -179,11 +182,14 @@ def checkBuildMake(hashP,urlP):
             dT['STATS'] = 'ERR'
             dT['METHOD'] = j
             dT['ADDONS'] = strAddons
+        listdT.append(dT.copy())
     if dT['STATS'] == '':
         dT['STATS'] == 'NULL'
         dT['METHOD'] = 'SKEEP'
         dT['ADDONS'] = 'NULL'
-    return dT
+        listdT.append(dT.copy())
+    return listdT
+
 
 commonTable = pd.read_csv(folderName+'commonTable.csv')
 
@@ -206,8 +212,9 @@ for i in commonTable['HASH']:
 # add update by date old
     if len(commonTable.loc[commonTable['HASH'] == i]['URL']) > 1:
         for urlForWork in commonTable.loc[commonTable['HASH'] == i]['URL']:
-            dictTmp = checkBuildMake(i,urlForWork)
-            resultData.writerow(dictTmp)
+            listdictTmp = checkBuildMake(i,urlForWork)
+			for dictTmp in listdictTmp:
+                resultData.writerow(dictTmp)
     elif len(commonTable.loc[commonTable['HASH'] == i]['URL']) < 1:
         continue
     elif not i in str(readSkeepData):
@@ -216,8 +223,9 @@ for i in commonTable['HASH']:
         os.fsync(fileSkeepData.fileno())
 
         urlForWork = list(commonTable.loc[commonTable['HASH'] == i]['URL'])[0] 
-        dictTmp = checkBuildMake(i,urlForWork)
-        resultData.writerow(dictTmp)
+        listdictTmp = checkBuildMake(i,urlForWork)
+		for dictTmp in listdictTmp:
+            resultData.writerow(dictTmp)
 
     resultDataTmp.flush()
     os.fsync(resultDataTmp.fileno())

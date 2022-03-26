@@ -38,7 +38,7 @@ fileDataName = branchName+".csv"
 
 dateNow = datetime.datetime.today().strftime('%d%m%Y')
 dictCheckMake = {'HASH':'', 'METHOD':'' ,'ADDONS':'' ,'STATS':'' ,'DATE':dateNow}
-listMakeCommand = ['./configure','./autogen.sh && ./configure','build/autogen.sh &&./configure','./bootstrap.sh&&./configure','autoreconf -i && ./configure','cmake ./','./bootstrap&&./configure']
+listMakeCommand = ['make','./configure&&make','./autogen.sh && ./configure&&make','build/autogen.sh &&./configure&&make','./bootstrap.sh&&./configure&&make','autoreconf -i && ./configure&&make','cmake ./','./bootstrap&&./configure&&make']
 
 if os.path.exists(folderName):
     shutil.rmtree(folderName)

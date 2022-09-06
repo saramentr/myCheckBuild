@@ -79,9 +79,32 @@ def chechSize():
         timer2 = threading.Timer(600.0, chechSize)
         timer2.start()
 
-
+os.system('wget https://raw.githubusercontent.com/saramentr/myCheckBuild/checkBuildMake/checkBuildMake.csv')
+checkBuildMake = pd.read_csv('checkBuildMake.csv')
 issueTable = pd.read_csv(folderName+'issueTable.csv')
+commonTable = pd.read_csv(folderName+'commonTable.csv')
+
+repoForWork = sorted(set(issueTable['GITLINK'].tolist()))
+listCSV = []
+for i in repoForWork:
+    try:
+        hashForWork = commonTable.loc[commonTable['URL'] == i]['HASH'].tolist()[0]
+        issueHash = issueTable.loc[issueTable['GITLINK'] == i]['HASH'].tolist()[0]
+    except:
+        continue
+ 
+    dfBuild = checkBuildMake.loc[(checkBuildMake['HASH']==hashForWork) & (checkBuildMake['STATS']=='OK')]
+    for j in range(len(dfBuild)):
+        line =str(issueHash)+','+str(dfBuild.iloc[j]['METHOD'])+','+str(dfBuild.iloc[j]['ADDONS'])
+        if not line in listCSV:
+            listCSV.append(line)
+
 down_git_branch(loginName,passName,repoName,folderGitClone,branchName)
+with open(folderGitClone+'issueBuild.csv', "w") as file:
+    file.write('HASH,METHOD,ADDONS\n')
+    for line in listCSV:
+        file.write(line)
+        file.write('\n')
 threadCommit()
 
 findFolder = folderGitClone
@@ -115,6 +138,7 @@ for i in issueTable['HASH']:
     os.system("rm -rf "+foldTP+"_lgtm*")
     os.system("sudo echo 321 > "+fileExitCodeTP)
     
+
     os.system("timeout 60m /opt/codeqlmy/codeql/codeql database create --language=cpp --source-root="+foldTP+" --logdir="+foldLogTP+" -- "+foldPrjTP+" &&sudo echo $? > "+fileExitCodeTP)
 
     echoCode = open(fileExitCodeTP, 'r').read()

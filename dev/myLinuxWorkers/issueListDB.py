@@ -84,33 +84,36 @@ checkBuildMake = pd.read_csv('checkBuildMake.csv')
 issueTable = pd.read_csv(folderName+'issueTable.csv')
 commonTable = pd.read_csv(folderName+'commonTable.csv')
 
-repoForWork = sorted(set(issueTable['GITLINK'].tolist()))
-listCSV = []
-for i in repoForWork:
-    try:
-        hashForWork = commonTable.loc[commonTable['URL'] == i]['HASH'].tolist()[0]
-        issueHash = issueTable.loc[issueTable['GITLINK'] == i]['HASH'].tolist()[0]
-    except:
-        continue
- 
-    dfBuild = checkBuildMake.loc[(checkBuildMake['HASH']==hashForWork) & (checkBuildMake['STATS']=='OK')]
-    for j in range(len(dfBuild)):
-        line =str(issueHash)+','+str(dfBuild.iloc[j]['METHOD'])+','+str(dfBuild.iloc[j]['ADDONS'])
-        if not line in listCSV:
-            listCSV.append(line)
+#stop issueBuild.csv file create
+#repoForWork = sorted(set(issueTable['GITLINK'].tolist()))
+#listCSV = []
+#for i in repoForWork:
+#    try:
+#        hashForWork = commonTable.loc[commonTable['URL'] == i]['HASH'].tolist()[0]
+#        issueHash = issueTable.loc[issueTable['GITLINK'] == i]['HASH'].tolist()[0]
+#    except:
+#        continue
+# 
+#    dfBuild = checkBuildMake.loc[(checkBuildMake['HASH']==hashForWork) & (checkBuildMake['STATS']=='OK')]
+#    for j in range(len(dfBuild)):
+#        line =str(issueHash)+','+str(dfBuild.iloc[j]['METHOD'])+','+str(dfBuild.iloc[j]['ADDONS'])
+#        if not line in listCSV:
+#            listCSV.append(line)
 
 down_git_branch(loginName,passName,repoName,folderGitClone,branchName)
-with open(folderGitClone+'issueBuild.csv', "w") as file:
-    file.write('HASH,METHOD,ADDONS\n')
-    for line in listCSV:
-        file.write(line)
-        file.write('\n')
+#with open(folderGitClone+'issueBuild.csv', "w") as file:
+#    file.write('HASH,METHOD,ADDONS\n')
+#    for line in listCSV:
+#        file.write(line)
+#        file.write('\n')
 threadCommit()
 
 findFolder = folderGitClone
-for f in glob.glob(findFolder+'*.7z'):
-    if not issueTable.isin([f.split(findFolder)[1].split('.7z')[0]]).any().any():
-        os.system('rm -rf '+f)
+#stop auto clean
+#for f in glob.glob(findFolder+'*.7z'):
+#    if not issueTable.isin([f.split(findFolder)[1].split('.7z')[0]]).any().any():
+#        os.system('rm -rf '+f)
+
 #chechSize()
 #if file exists but not in csv - delete
 

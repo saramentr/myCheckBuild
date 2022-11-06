@@ -28,8 +28,8 @@ repoName = sys.argv[2].split('/')[1]
 archivePass = sys.argv[3]
 archiveUrl = sys.argv[4]
 
-folderName = "/tmp/works/"
-folderGitClone = "/tmp/gitClone/"
+folderName = "/opt/works/"
+folderGitClone = "/opt/gitClone/"
 
 fileSkeepName = "skeepData"
 branchName = sys.argv[0].split('/')[-1].split('.py')[0]
@@ -88,17 +88,17 @@ def chechSize():
 def checkBuildQL(hashP,urlP):
     dT = dict(dictCheckBuildQL)
     dT['HASH'] = hashP
-    foldTP = '/tmp/forCheckQL/'
-    foldPrjTP = '/tmp/dbprj/'
-    foldLogTP = "/tmp/LOGsFolder/"
-    fileTP = '/tmp/fileOut.tmp'
-    fileExitCodeTP = '/tmp/echoExitCode'
+    foldTP = '/opt/forCheckQL/'
+    foldPrjTP = '/opt/dbprj/'
+    foldLogTP = "/opt/LOGsFolder/"
+    fileTP = '/opt/fileOut.tmp'
+    fileExitCodeTP = '/opt/echoExitCode'
     if os.path.exists(foldTP):
         shutil.rmtree(foldTP)
     if not str(urlP).startswith('https://') and not str(urlP).startswith('git://'):
         return dT
     os.system("git clone "+urlP.splitlines()[0]+' '+foldTP)
-    os.system('echo clone end')
+    
     if not os.path.exists(foldTP):
         dT['STATS'] = 'NULL'
         return dT

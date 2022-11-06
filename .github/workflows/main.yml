@@ -10,7 +10,7 @@ jobs:
     outputs:
       matrix: ${{steps.list_dirs.outputs.matrix}}
     steps:  
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
        ref: dev
        path: dev
@@ -21,7 +21,7 @@ jobs:
     outputs:
       matrix: ${{steps.list_dirs.outputs.matrix}}
     steps:  
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
        ref: dev
        path: dev
@@ -36,7 +36,7 @@ jobs:
       matrix:
         job: ${{fromJson(needs.StartWorks.outputs.matrix)}}
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
        ref: dev
        path: dev
@@ -53,7 +53,7 @@ jobs:
       matrix:
         job: ${{fromJson(needs.StartWorksWin.outputs.matrix)}}
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
        ref: dev
        path: dev
